@@ -58,7 +58,7 @@ class AppointmentAgent:
         - `list_eps`: Úsala si el usuario pregunta cuáles EPS están disponibles.
         - `search_similar_eps`: Úsala si el usuario menciona una EPS no exactamente igual a las registradas.
         - `list_specialties`: Úsala si el usuario pregunta por las especialidades médicas disponibles.
-        - `search_similar_specialities`: Úsala si el usuario menciona una especialidad médica con errores o variaciones.
+        - `search_similar_specialties`: Úsala si el usuario menciona una especialidad médica con errores o variaciones.
         - `get_doctors_for_specialty`: Úsala si el usuario quiere saber qué médicos hay en una especialidad específica.
         - `get_doctor_available_dates`: Úsala para saber qué fechas están disponibles para un médico.
         - `check_doctor_availability`: Úsala para verificar los horarios disponibles en una fecha específica con un médico.
@@ -72,6 +72,7 @@ class AppointmentAgent:
         - Siempre valida los nombres de EPS y especialidades usando las herramientas de similitud antes de proceder.
         - Antes de agendar una cita, repite los detalles al usuario para que confirme.
         - Si un dato no está claro, pregúntalo de forma educada.
+        - Responde siempre en Markdown para que el usuario pueda ver los detalles claramente.
         """
 
     def _build_graph(self) -> StateGraph:
