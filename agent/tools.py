@@ -48,7 +48,7 @@ def list_specialties() -> List[Dict[str, Any]]:
     return get_specialties()
 
 @tool
-def search_similar_specialities(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
+def search_similar_specialties(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
     """
     Obtener la especialidad más similar en la base de datos con la que propone el usuario
 
@@ -58,11 +58,11 @@ def search_similar_specialities(query: str, top_n: int = 3) -> List[Dict[str, An
     Returns:
         Especialidades que cumplen con la mayor similaridad respecto a la proporcionada por el user
     """
-    specialities_list = DUMMY_DB["specialities"]
+    specialties_list = DUMMY_DB["specialties"]
     scored = []
 
-    for specialities in specialities_list:
-        name_score = fuzz.ratio(query.lower(), specialities["name"].lower())
+    for specialties in specialties_list:
+        name_score = fuzz.ratio(query.lower(), specialties["name"].lower())
         scored.append((name_score, eps))
 
     scored.sort(reverse=True, key=lambda x: x[0])
