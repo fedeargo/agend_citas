@@ -1,0 +1,10 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+langgraph==0.0.62
+langchain==0.1.0
+langchain-openai==0.0.2
+langchain-core==0.1.0
+python-multipart==0.0.6
+langchain-google-vertexai==2.0.15
+rapidfuzz==3.0.0
