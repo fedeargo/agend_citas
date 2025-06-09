@@ -51,7 +51,7 @@ async def chat_with_agent(request: AppointmentRequest):
     Endpoint principal para chatear con el agente de agendamiento
     """
     try:
-        result = await appointment_agent.chat(
+        result = appointment_agent.chat(
             message=request.user_message,
             user_id=request.user_id
         )

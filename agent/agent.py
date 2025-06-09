@@ -1,4 +1,4 @@
-from memory.firestoresaver import FirestoreSaver
+from memory.firestore import FirestoreSaver
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_google_vertexai import ChatVertexAI
@@ -29,10 +29,8 @@ class AppointmentAgent:
         self.llm_with_tools = self.llm.bind_tools(MEDICAL_TOOLS)
         
         # Crear el memory saver (checkpointer)
-        self.memory = FirestoreSaver(
-            project_id="ace-line-451722-u7",
-        )
-        
+        memory = FirestoreSaver(database= "(default)", collection_name="memory", pw_collection_name="memory_writes") 
+
         # Crear el grafo con checkpointer
         self.graph = self._build_graph()
         
@@ -130,7 +128,7 @@ class AppointmentAgent:
         # Compilar con el memory saver
         return workflow.compile(checkpointer=self.memory)
 
-    async def chat(self, message: str, user_id: str) -> AppointmentResponse:
+    def chat(self, message: str, user_id: str) -> AppointmentResponse:
         """
         Chatear con el agente de agendamiento usando memory saver
         
@@ -152,7 +150,7 @@ class AppointmentAgent:
         try:
             # Ejecutar el grafo con el mensaje actual y el user_id
             # El estado se maneja automáticamente por el checkpointer
-            result = await self.graph.ainvoke(
+            result = self.graph.invoke(
                 {
                     "messages": [HumanMessage(content=message)],
                     "user_id": user_id
