@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from typing import Optional
 import uvicorn
+import logging
 import os
 
 from agent.agent import AppointmentAgent
@@ -23,7 +24,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+logging.basicConfig(level=logging.INFO)
 
+@app.on_event("startup")
+async def on_startup():
+    logging.info("🚀 API iniciada (startup)")
+
+@app.on_event("shutdown")
+async def on_shutdown():
+    logging.info("🛑 API apagada (shutdown)")
 
 # Inicializar el agente
 appointment_agent = AppointmentAgent()
