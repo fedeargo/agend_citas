@@ -9,3 +9,4 @@ langchain-core==0.3.60
 python-multipart==0.0.20
 langchain-google-vertexai==2.0.15
 rapidfuzz==3.13.0
+google-cloud-firestore==0.28.0
