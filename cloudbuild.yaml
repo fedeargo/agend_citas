@@ -19,7 +19,7 @@ steps:
           echo "Repositorio ya existe, no se hace nada."
         else
           echo "Creando repositorio..."
-          gcloud artifacts repositories create "$(cat repo_artifact.txt)" --location "$(cat region.txt)" --description "Repo de artefactos para los microservicios de AI" --repository-format="DOCKER"
+          gcloud artifacts repositories create "$(cat repo_artifact.txt)" --location "$(cat region.txt)" --description "Repo de backend para la IA de agendamiento de citas" --repository-format="DOCKER"
         fi
 
   - name: 'gcr.io/cloud-builders/docker'
