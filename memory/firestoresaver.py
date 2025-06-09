@@ -139,7 +139,7 @@ class FirestoreSaver(BaseCheckpointSaver):
     def __init__(self, project_id, checkpoints_collection='checkpoints', writes_collection='writes'):
         super().__init__()
         self.client = firestore.Client(project=project_id)
-        self.firestore_serde = FirestoreSerializer(self.serde)
+        self.firestore_serde = FirestoreSerializer()
         self.checkpoints_collection = self.client.collection(checkpoints_collection)
         self.writes_collection = self.client.collection(writes_collection)
 
