@@ -82,6 +82,27 @@ def get_doctors_for_specialty(specialty_id: str) -> List[Dict[str, Any]]:
     return get_doctors_by_specialty(specialty_id)
 
 @tool
+def search_similar_doctors(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
+    """
+    Obtener al doctor más similar en la base de datos con la que propone el usuario
+
+    Args:
+        query: Mensaje proporcionado por el usuario indicando un supuesto doctor
+    
+    Returns:
+        Doctores que cumplen con la mayor similaridad respecto a la proporcionada por el user
+    """
+    doctors_list = DUMMY_DB["doctors"]
+    scored = []
+
+    for doctors in doctors_list:
+        name_score = fuzz.ratio(query.lower(), doctors["name"].lower())
+        scored.append((name_score, eps))
+
+    scored.sort(reverse=True, key=lambda x: x[0])
+    return [item[1] for item in scored[:top_n]]
+
+@tool
 def check_doctor_availability(doctor_id: str, date: str) -> List[str]:
     """
     Verificar los horarios disponibles de un médico en una fecha específica.
@@ -108,6 +129,22 @@ def get_doctor_available_dates(doctor_id: str, days_ahead: int = 7) -> List[str]
         Lista de fechas disponibles en formato YYYY-MM-DD
     """
     return get_available_dates(doctor_id, days_ahead)
+
+@tool
+def get_available_schedule_by_specialty(specialty_id: str, days_ahead: int = 7) -> List[Dict[str, Any]]:
+    """
+    Obtener horarios disponibles por especialidad.
+    
+    Retorna una lista con los doctores de la especialidad, cada uno con sus fechas y horas disponibles.
+    
+    Args:
+        specialty_id: ID de la especialidad
+        days_ahead: Número de días hacia adelante a verificar (por defecto 7)
+    
+    Returns:
+        Lista de doctores con sus fechas y horas disponibles
+    """
+    return get_available_schedule_by_specialty(specialty_id, days_ahead)
 
 @tool
 def schedule_appointment(user_id: str, eps_id: str, specialty_id: str, doctor_id: str, date: str, time: str) -> Dict[str, Any]:

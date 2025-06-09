@@ -63,7 +63,37 @@ def get_available_slots(doctor_id: str, date: str) -> List[str]:
     
     return [slot for slot in doctor["available_hours"] if slot not in occupied_slots]
 
-def get_available_dates(doctor_id: str, days_ahead: int = 7) -> List[str]:
+def get_available_schedule_by_specialty(specialty_id: str, days_ahead: int = 7) -> List[Dict[str, Any]]:
+    """
+    Obtener horarios disponibles por especialidad.
+    
+    Retorna una lista con los doctores de la especialidad, cada uno con sus fechas y horas disponibles.
+    """
+    doctors = get_doctors_by_specialty(specialty_id)
+    available_schedule = []
+
+    for doctor in doctors:
+        doctor_schedule = {
+            "doctor_id": doctor["id"],
+            "doctor_name": doctor["name"],
+            "available_dates": []
+        }
+
+        dates = get_available_dates_for_medic(doctor["id"], days_ahead)
+        for date in dates:
+            slots = get_available_slots(doctor["id"], date)
+            doctor_schedule["available_dates"].append({
+                "date": date,
+                "available_hours": slots
+            })
+
+        if doctor_schedule["available_dates"]:
+            available_schedule.append(doctor_schedule)
+
+    return available_schedule
+
+
+def get_available_dates_for_medic(doctor_id: str, days_ahead: int = 7) -> List[str]:
     """Obtener fechas disponibles para un médico"""
     dates = []
     for i in range(1, days_ahead + 1):

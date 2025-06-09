@@ -7,3 +7,4 @@ langchain-openai==0.0.2
 langchain-core==0.1.0
 python-multipart==0.0.6
 langchain-google-vertexai==2.0.15
+rapidfuzz==3.0.0
