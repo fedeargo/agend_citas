@@ -1,74 +1,9 @@
-# Core LangChain and LangGraph dependencies
-langchain==0.1.20
-langchain-core==0.1.52
-langchain-openai==0.1.8
-langgraph==0.0.69
-
-# FastAPI and web server dependencies
-fastapi==0.110.2
-uvicorn[standard]==0.29.0
-python-multipart==0.0.9
-
-# HTTP client and CORS
-httpx==0.27.0
-requests==2.31.0
-
-# Data validation and serialization
-pydantic==2.7.1
-pydantic-settings==2.2.1
-
-# OpenAI API client
-openai==1.30.1
-
-# Text processing and regex
-regex==2023.12.25
-
-# Environment variables
-python-dotenv==1.0.1
-
-# Async support
-asyncio==3.4.3
-aiofiles==23.2.1
-
-# JSON handling
-orjson==3.10.3
-
-# Typing extensions for Python compatibility
-typing-extensions==4.11.0
-
-# Logging and monitoring
-structlog==24.1.0
-
-# Google Cloud dependencies (for deployment)
-google-cloud-run==0.10.0
-google-cloud-storage==2.16.0
-google-cloud-logging==3.10.0
-google-auth==2.29.0
-
-# Database (optional - for session persistence)
-sqlalchemy==2.0.30
-alembic==1.13.1
-psycopg2-binary==2.9.9
-
-# Redis (optional - for session storage)
-redis==5.0.4
-aioredis==2.0.1
-
-# Security
-cryptography==42.0.7
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-
-# Testing (development)
-pytest==8.2.0
-pytest-asyncio==0.23.6
-httpx==0.27.0
-
-# Code quality (development)
-black==24.4.2
-flake8==7.0.0
-isort==5.13.2
-
-# Documentation (optional)
-mkdocs==1.6.0
-mkdocs-material==9.5.21
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+langgraph==0.0.62
+langchain==0.1.0
+langchain-openai==0.0.2
+langchain-core==0.1.0
+python-multipart==0.0.6
+langchain-google-vertexai==2.0.15
