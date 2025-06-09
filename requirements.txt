@@ -3,7 +3,7 @@ uvicorn==0.32.0
 pydantic==2.9.2
 langgraph==0.4.5
 langchain==0.3.25
-langchain-core==0.3.30
+langchain-core==0.3.60
 python-multipart==0.0.20
 langchain-google-vertexai==2.0.15
 rapidfuzz==3.13.0
