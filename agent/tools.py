@@ -10,6 +10,37 @@ from database.dummy_data import (
     get_eps_info, get_specialty_info
 )
 
+DUMMY_DB = {
+    "eps": [
+        {"id": "eps_1", "name": "Sura EPS", "code": "SURA"},
+        {"id": "eps_2", "name": "Sanitas EPS", "code": "SANITAS"},
+        {"id": "eps_3", "name": "Compensar EPS", "code": "COMPENSAR"},
+        {"id": "eps_4", "name": "Nueva EPS", "code": "NUEVA"},
+        {"id": "eps_5", "name": "Famisanar EPS", "code": "FAMISANAR"},
+    ],
+    "specialties": [
+        {"id": "spec_1", "name": "Medicina General", "description": "Consulta médica general"},
+        {"id": "spec_2", "name": "Cardiología", "description": "Especialista en corazón"},
+        {"id": "spec_3", "name": "Dermatología", "description": "Especialista en piel"},
+        {"id": "spec_4", "name": "Ginecología", "description": "Especialista en salud femenina"},
+        {"id": "spec_5", "name": "Pediatría", "description": "Especialista en niños"},
+        {"id": "spec_6", "name": "Oftalmología", "description": "Especialista en ojos"},
+        {"id": "spec_7", "name": "Psicología", "description": "Salud mental"},
+        {"id": "spec_8", "name": "Ortopedia", "description": "Especialista en huesos y articulaciones"},
+        {"id": "spec_9", "name": "Neurología", "description": "Especialista en sistema nervioso"},
+    ],
+    "doctors": [
+        {"id": "doc_1", "name": "Dr. Juan Pérez", "specialty_id": "spec_1", "available_hours": ["09:00", "10:00", "11:00", "14:00", "15:00"]},
+        {"id": "doc_2", "name": "Dr. María González", "specialty_id": "spec_2", "available_hours": ["08:00", "09:00", "10:00", "16:00"]},
+        {"id": "doc_3", "name": "Dr. Carlos Rodríguez", "specialty_id": "spec_3", "available_hours": ["10:00", "11:00", "14:00", "15:00", "16:00"]},
+        {"id": "doc_4", "name": "Dra. Ana López", "specialty_id": "spec_4", "available_hours": ["08:00", "09:00", "14:00", "15:00"]},
+        {"id": "doc_5", "name": "Dr. Luis Martínez", "specialty_id": "spec_5", "available_hours": ["09:00", "10:00", "11:00", "15:00", "16:00"]},
+        {"id": "doc_6", "name": "Dra. Sofia Hernández", "specialty_id": "spec_6", "available_hours": ["08:00", "10:00", "11:00", "14:00"]},
+        {"id": "doc_7", "name": "Dr. Roberto Silva", "specialty_id": "spec_7", "available_hours": ["09:00", "10:00", "15:00", "16:00", "17:00"]},
+    ],
+    "appointments": []
+}
+
 @tool
 def list_eps() -> List[Dict[str, Any]]:
     """
