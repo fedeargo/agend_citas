@@ -31,6 +31,8 @@ DUMMY_DB = {
         {"id": "doc_5", "name": "Dr. Luis Martínez", "specialty_id": "spec_5", "available_hours": ["09:00", "10:00", "11:00", "15:00", "16:00"]},
         {"id": "doc_6", "name": "Dra. Sofia Hernández", "specialty_id": "spec_6", "available_hours": ["08:00", "10:00", "11:00", "14:00"]},
         {"id": "doc_7", "name": "Dr. Roberto Silva", "specialty_id": "spec_7", "available_hours": ["09:00", "10:00", "15:00", "16:00", "17:00"]},
+        {"id": "doc_8", "name": "Dr. Marco Gómez", "specialty_id": "spec_8", "available_hours": ["08:00", "10:00", "11:00", "14:00"]},
+        {"id": "doc_9", "name": "Dra. Jimena Alzate", "specialty_id": "spec_9", "available_hours": ["09:00", "10:00", "15:00", "16:00", "17:00"]},
     ],
     "appointments": []
 }

@@ -40,7 +40,8 @@ class AppointmentAgent:
         1. Identificar su EPS
         2. Encontrar la especialidad médica que necesitan
         3. Consultar disponibilidad de médicos o de especialidades
-        4. Agendar citas médicas
+        4. Identificar su número y tipo de documento
+        5. Agendar citas médicas
 
         IMPORTANTE:
         - Siempre mantén una conversación natural y amigable.
