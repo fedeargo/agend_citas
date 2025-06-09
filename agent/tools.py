@@ -16,7 +16,11 @@ def list_eps() -> List[Dict[str, Any]]:
     Obtener la lista completa de EPS disponibles.
     Útil cuando el usuario pregunta qué EPS están disponibles.
     """
-    return get_eps_list()
+    try:
+        return get_eps_list()
+    except Exception as e:
+        print(f"Error in list_eps: {e}")
+        return {"error": str(e)}
 
 @tool
 def search_similar_eps(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
@@ -29,15 +33,19 @@ def search_similar_eps(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
     Returns:
         EPS que cumplen con la mayor similaridad respecto a la proporcionada por el user
     """
-    eps_list = DUMMY_DB["eps"]
-    scored = []
+    try:
+        eps_list = DUMMY_DB["eps"]
+        scored = []
 
-    for eps in eps_list:
-        name_score = fuzz.ratio(query.lower(), eps["name"].lower())
-        scored.append((name_score, eps))
+        for eps in eps_list:
+            name_score = fuzz.ratio(query.lower(), eps["name"].lower())
+            scored.append((name_score, eps))
 
-    scored.sort(reverse=True, key=lambda x: x[0])
-    return [item[1] for item in scored[:top_n]]
+        scored.sort(reverse=True, key=lambda x: x[0])
+        return [item[1] for item in scored[:top_n]]
+    except Exception as e:
+        print(f"Error in search_similar_eps: {e}")
+        return {"error": str(e)}
 
 @tool
 def list_specialties() -> List[Dict[str, Any]]:
@@ -45,7 +53,11 @@ def list_specialties() -> List[Dict[str, Any]]:
     Obtener la lista completa de especialidades médicas disponibles.
     Útil cuando el usuario pregunta qué especialidades están disponibles.
     """
-    return get_specialties()
+    try:
+        return get_specialties()
+    except Exception as e:
+        print(f"Error in list_specialties: {e}")
+        return {"error": str(e)}
 
 @tool
 def search_similar_specialties(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
@@ -58,15 +70,19 @@ def search_similar_specialties(query: str, top_n: int = 3) -> List[Dict[str, Any
     Returns:
         Especialidades que cumplen con la mayor similaridad respecto a la proporcionada por el user
     """
-    specialties_list = DUMMY_DB["specialties"]
-    scored = []
+    try:
+        specialties_list = DUMMY_DB["specialties"]
+        scored = []
 
-    for specialties in specialties_list:
-        name_score = fuzz.ratio(query.lower(), specialties["name"].lower())
-        scored.append((name_score, eps))
+        for specialties in specialties_list:
+            name_score = fuzz.ratio(query.lower(), specialties["name"].lower())
+            scored.append((name_score, specialties))
 
-    scored.sort(reverse=True, key=lambda x: x[0])
-    return [item[1] for item in scored[:top_n]]
+        scored.sort(reverse=True, key=lambda x: x[0])
+        return [item[1] for item in scored[:top_n]]
+    except Exception as e:
+        print(f"Error in search_similar_specialties: {e}")
+        return {"error": str(e)}
 
 @tool
 def get_doctors_for_specialty(specialty_id: str) -> List[Dict[str, Any]]:
@@ -79,7 +95,11 @@ def get_doctors_for_specialty(specialty_id: str) -> List[Dict[str, Any]]:
     Returns:
         Lista de médicos que trabajan en esa especialidad
     """
-    return get_doctors_by_specialty(specialty_id)
+    try:
+        return get_doctors_by_specialty(specialty_id)
+    except Exception as e:
+        print(f"Error in get_doctors_for_specialty: {e}")
+        return {"error": str(e)}
 
 @tool
 def search_similar_doctors(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
@@ -92,15 +112,19 @@ def search_similar_doctors(query: str, top_n: int = 3) -> List[Dict[str, Any]]:
     Returns:
         Doctores que cumplen con la mayor similaridad respecto a la proporcionada por el user
     """
-    doctors_list = DUMMY_DB["doctors"]
-    scored = []
+    try:
+        doctors_list = DUMMY_DB["doctors"]
+        scored = []
 
-    for doctors in doctors_list:
-        name_score = fuzz.ratio(query.lower(), doctors["name"].lower())
-        scored.append((name_score, eps))
+        for doctors in doctors_list:
+            name_score = fuzz.ratio(query.lower(), doctors["name"].lower())
+            scored.append((name_score, doctors))
 
-    scored.sort(reverse=True, key=lambda x: x[0])
-    return [item[1] for item in scored[:top_n]]
+        scored.sort(reverse=True, key=lambda x: x[0])
+        return [item[1] for item in scored[:top_n]]
+    except Exception as e:
+        print(f"Error in search_similar_doctors: {e}")
+        return {"error": str(e)}
 
 @tool
 def check_doctor_availability(doctor_id: str, date: str) -> List[str]:
@@ -114,7 +138,11 @@ def check_doctor_availability(doctor_id: str, date: str) -> List[str]:
     Returns:
         Lista de horarios disponibles (ej: ["09:00", "10:00", "11:00"])
     """
-    return get_available_slots(doctor_id, date)
+    try:
+        return get_available_slots(doctor_id, date)
+    except Exception as e:
+        print(f"Error in check_doctor_availability: {e}")
+        return {"error": str(e)}
 
 @tool
 def get_doctor_available_dates(doctor_id: str, days_ahead: int = 7) -> List[str]:
@@ -128,7 +156,11 @@ def get_doctor_available_dates(doctor_id: str, days_ahead: int = 7) -> List[str]
     Returns:
         Lista de fechas disponibles en formato YYYY-MM-DD
     """
-    return get_available_dates_for_medic(doctor_id, days_ahead)
+    try:
+        return get_available_dates_for_medic(doctor_id, days_ahead)
+    except Exception as e:
+        print(f"Error in get_doctor_available_dates: {e}")
+        return {"error": str(e)}
 
 @tool
 def get_available_schedule_by_specialty(specialty_id: str, days_ahead: int = 7) -> List[Dict[str, Any]]:
@@ -144,7 +176,11 @@ def get_available_schedule_by_specialty(specialty_id: str, days_ahead: int = 7) 
     Returns:
         Lista de doctores con sus fechas y horas disponibles
     """
-    return get_available_schedule_by_specialty(specialty_id, days_ahead)
+    try:
+        return get_available_schedule_by_specialty(specialty_id, days_ahead)
+    except Exception as e:
+        print(f"Error in get_available_schedule_by_specialty: {e}")
+        return {"error": str(e)}
 
 @tool
 def schedule_appointment(user_id: str, eps_id: str, specialty_id: str, doctor_id: str, date: str, time: str) -> Dict[str, Any]:
@@ -177,6 +213,7 @@ def schedule_appointment(user_id: str, eps_id: str, specialty_id: str, doctor_id
             "doctor_name": doctor_info["name"] if doctor_info else ""
         }
     except Exception as e:
+        print(f"Error in schedule_appointment: {e}")
         return {"error": str(e)}
 
 @tool
@@ -190,7 +227,11 @@ def get_user_appointments_tool(user_id: str) -> List[Dict[str, Any]]:
     Returns:
         Lista de citas del usuario con información completa
     """
-    return get_user_appointments(user_id)
+    try:
+        return get_user_appointments(user_id)
+    except Exception as e:
+        print(f"Error in get_user_appointments_tool: {e}")
+        return {"error": str(e)}
 
 @tool
 def get_current_date() -> str:
@@ -200,7 +241,11 @@ def get_current_date() -> str:
     Returns:
         Fecha actual en formato YYYY-MM-DD
     """
-    return datetime.now().strftime("%Y-%m-%d")
+    try:
+        return datetime.now().strftime("%Y-%m-%d")
+    except Exception as e:
+        print(f"Error in get_current_date: {e}")
+        return {"error": str(e)}
 
 @tool
 def get_tomorrow_date() -> str:
@@ -210,14 +255,18 @@ def get_tomorrow_date() -> str:
     Returns:
         Fecha de mañana en formato YYYY-MM-DD
     """
-    return (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    try:
+        return (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    except Exception as e:
+        print(f"Error in get_tomorrow_date: {e}")
+        return {"error": str(e)}
 
 # Lista de todas las herramientas disponibles
 MEDICAL_TOOLS = [
     list_eps,
     search_similar_eps,
     list_specialties,
-    search_similar_specialities,
+    search_similar_specialties,
     get_doctors_for_specialty,
     check_doctor_availability,
     get_doctor_available_dates,
