@@ -44,8 +44,7 @@ async def chat_with_agent(request: AppointmentRequest):
     try:
         result = await appointment_agent.chat(
             message=request.user_message,
-            user_id=request.user_id,
-            conversation_history=request.conversation_history or []
+            user_id=request.user_id
         )
         return result
     except Exception as e:
