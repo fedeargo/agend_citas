@@ -5,7 +5,7 @@ from rapidfuzz import fuzz
 
 from database.dummy_data import (
     get_eps_list, get_specialties,
-    get_doctors_by_specialty, get_available_slots, get_available_dates,
+    get_doctors_by_specialty, get_available_slots, get_available_dates_for_medic,
     create_appointment, get_user_appointments, get_doctor_info,
     get_eps_info, get_specialty_info
 )
@@ -128,7 +128,7 @@ def get_doctor_available_dates(doctor_id: str, days_ahead: int = 7) -> List[str]
     Returns:
         Lista de fechas disponibles en formato YYYY-MM-DD
     """
-    return get_available_dates(doctor_id, days_ahead)
+    return get_available_dates_for_medic(doctor_id, days_ahead)
 
 @tool
 def get_available_schedule_by_specialty(specialty_id: str, days_ahead: int = 7) -> List[Dict[str, Any]]:
