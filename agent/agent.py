@@ -1,5 +1,5 @@
 from memory.firestore import FirestoreSaver
-from langgraph.graph import StateGraph, END
+from langgraph.graph import StateGraph, END, START, MessagesState
 from langgraph.prebuilt import ToolNode
 from langchain_google_vertexai import ChatVertexAI
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
@@ -11,8 +11,7 @@ from typing import Annotated, TypedDict
 from agent.tools import MEDICAL_TOOLS
 from models.schemas import AppointmentResponse
 
-class AgentState(TypedDict):
-    messages: Annotated[List, "Messages in the conversation"]
+class AgentState(MessagesState):
     user_id: str
 
 
