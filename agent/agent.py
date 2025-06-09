@@ -29,7 +29,7 @@ class AppointmentAgent:
         self.llm_with_tools = self.llm.bind_tools(MEDICAL_TOOLS)
         
         # Crear el memory saver (checkpointer)
-        memory = FirestoreSaver(database= "(default)", collection_name="memory", pw_collection_name="memory_writes") 
+        self.memory = FirestoreSaver(database= "(default)", collection_name="memory", pw_collection_name="memory_writes") 
 
         # Crear el grafo con checkpointer
         self.graph = self._build_graph()
