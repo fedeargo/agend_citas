@@ -3,6 +3,7 @@ uvicorn==0.32.0
 pydantic==2.9.2
 langgraph==0.4.5
 langgraph-checkpoint-sqlite==2.0.10
+aiosqlite == 0.21.0
 langchain==0.3.25
 langchain-core==0.3.60
 python-multipart==0.0.20
