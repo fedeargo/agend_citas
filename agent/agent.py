@@ -29,7 +29,7 @@ class AppointmentAgent:
         self.llm_with_tools = self.llm.bind_tools(MEDICAL_TOOLS)
         
         # Crear el memory saver (checkpointer)
-        self.memory = SqliteSaver("checkpoints.db")
+        self.memory = AsyncSqliteSaver("checkpoints.db")
         
         # Crear el grafo con checkpointer
         self.graph = self._build_graph()
