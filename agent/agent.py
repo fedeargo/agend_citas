@@ -1,4 +1,4 @@
-from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_google_vertexai import ChatVertexAI
@@ -29,7 +29,7 @@ class AppointmentAgent:
         self.llm_with_tools = self.llm.bind_tools(MEDICAL_TOOLS)
         
         # Crear el memory saver (checkpointer)
-        self.memory = MemorySaver()
+        self.memory = SqliteSaver("checkpoints.db")
         
         # Crear el grafo con checkpointer
         self.graph = self._build_graph()
